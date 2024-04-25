@@ -40,7 +40,8 @@
               }
             ],
             "scripts": [],
-            "es5BrowserSupport": true
+	    "es5BrowserSupport": true	
+            
           },
           "configurations": {
             "production": {

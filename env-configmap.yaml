@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 data:
-  AWS_BUCKET: udagram-vikram-dev
+  AWS_BUCKET: mybucket1453
   AWS_PROFILE: default
-  AWS_REGION: us-east-1
+  AWS_REGION: eu-north-1
   JWT_SECRET: helloworld
-  POSTGRESS_DB: udagramvikramdev
-  POSTGRESS_HOST: udagramvikramdev.cjlpipxlkrcl.us-east-1.rds.amazonaws.com
+  POSTGRESS_DB: databaseby
+  POSTGRESS_HOST: databaseby.cde2k2u0wm67.eu-north-1.rds.amazonaws.com
   URL: http://localhost:8100  
 metadata:
   name: env-config
