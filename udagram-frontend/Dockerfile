@@ -1,15 +1,29 @@
-### Build
-FROM beevelop/ionic:latest AS ionic
-## Create app directory
-WORKDIR /usr/src/app
-## Install app dependencies
-## A wildcard is used to ensure both package.json AND package-lock.json are copied
+# Use an official Node.js runtime as the base image
+FROM node:18 as build
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-RUN npm ci --legacy-peer-deps
-## Bundle app source
+
+# Install dependencies
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of the frontend code to the working directory
 COPY . .
-RUN ionic build --verbose
-### Run 
+
+# Build the frontend application
+RUN npm run build
+
+# Use a lightweight web server as the base image
 FROM nginx:alpine
-#COPY www /usr/share/nginx/html
-COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html
+
+# Copy the built frontend files to the web server's default directory
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Expose a port for the web server to listen on
+EXPOSE 80
+
+# Start the web server
+CMD ["nginx", "-g", "daemon off;"]
