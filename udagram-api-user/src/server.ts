@@ -1,6 +1,7 @@
-import cors from 'cors';
+const cors = require('cors');
 import express from 'express';
 import {sequelize} from './sequelize';
+import {sequelize} from './models/index';
 
 import {IndexRouter} from './controllers/v0/index.router';
 
